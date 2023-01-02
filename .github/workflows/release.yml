@@ -1,0 +1,28 @@
+on:
+  workflow_run:
+    branches:
+      - main
+    workflows: ["test"]
+    types:
+      - completed
+
+name: Create Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          node-version: "18.x"
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+      - run: npm i
+      - run: npm run release
+      - run: |
+          git push --follow-tags

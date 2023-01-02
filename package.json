@@ -1,0 +1,88 @@
+{
+  "name": "safe2pay_sdk",
+  "description": "Biblioteca para integração com a plataforma de pagamentos Safe2Pay",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "payment",
+    "pagamento",
+    "boleto",
+    "credito",
+    "debito",
+    "recorrencia",
+    "facil",
+    "segurança"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "license": "MIT",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node dist",
+    "dev:debug": "ts-node-dev --transpile-only --respawn --inspect=4321 --project tsconfig.json src/index.ts",
+    "dev": "ts-node-dev --transpile-only --respawn --project tsconfig.json src/index.ts",
+    "denoify": "rimraf deno_dist && denoify && rimraf 'deno_dist/**/*.test.ts'",
+    "build": "rimraf dist && tsx ./build.ts",
+    "prerelease": "yarn denoify && yarn build",
+    "lint": "eslint --ext .ts ./",
+    "lint:fix": "npx --no-install eslint --ignore-path .gitignore --fix --ext .ts ./",
+    "release": "npx --no-install standard-version"
+  },
+  "author": {
+    "name": "Jefferson Venceslau",
+    "email": "jeff.venceslau@gmail.com",
+    "homepage": "https://safe2pay.com.br/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/z22092/safe2pay_node_sdk"
+  },
+  "optionalDependencies": {
+    "abortcontroller-polyfill": "^1.7.5",
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^3.2.10"
+  },
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@types/node": "^18.11.18",
+    "@types/node-fetch": "^2.6.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "commitizen": "^4.2.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "denoify": "^1.4.5",
+    "esbuild": "^0.16.12",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-define-config": "^1.13.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^3.12.1",
+    "typescript": "^4.8.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,26 @@
+name: Publish Package to npmjs
+on:
+  workflow_run:
+    workflows: ["Create Release"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - run: git submodule update --init
+
+      - uses: actions/setup-node@v1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+      - run: npm i
+      - run: npm run build
+      - run: npm publish
