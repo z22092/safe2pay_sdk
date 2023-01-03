@@ -19,8 +19,8 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
-      - run: npm i
-      - run: npm run release
+      - run: yarn config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+      - run: yarn
+      - run: yarn release
       - run: |
           git push --follow-tags
