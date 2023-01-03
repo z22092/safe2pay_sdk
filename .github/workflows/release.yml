@@ -1,10 +1,8 @@
 on:
-  workflow_run:
-    branches:
-      - main
-    workflows: ["test"]
-    types:
-      - completed
+  push:
+    branches: [main]
+  pull_request:
+    branches: ["*"]
 
 name: Create Release
 
