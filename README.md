@@ -32,6 +32,8 @@ A integração com a API do Safe2Pay se dá pelo modelo RESTful, de forma a real
 #### Exemplo
 
 * import { createSafe2pay } from 'safe2pay_sdk'
+* import { createSafe2pay } from "https://deno.land/x/safe2pay_sdk@v0.0.4/deno_dist/mod.ts";
+
 * const apiClient = createSafe2pay(TOKEN)
 
 Após a importação da biblioteca para utilizar basta utilizar o comando 'apiClient' e utilizar o módulo desejado.
